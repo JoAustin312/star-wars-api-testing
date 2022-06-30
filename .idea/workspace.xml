@@ -10,6 +10,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2BI9xCy4WQjRfaPg7qafwAWYsH8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />

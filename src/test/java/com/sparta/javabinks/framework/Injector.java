@@ -1,20 +1,20 @@
 package com.sparta.javabinks.framework;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.javabinks.dtos.BoredAPIDTO;
+import com.sparta.javabinks.dtos.PeopleDTO;
 
 import java.io.IOException;
 import java.net.URL;
 
 public class Injector {
-    public static BoredAPIDTO injectDTO(String url) {
-        BoredAPIDTO boredAPIDTO;
+    public static PeopleDTO injectPeopleDTO(String url) {
+        PeopleDTO peopleDTO = null;
         ObjectMapper mapper = new ObjectMapper();
         try {
-            boredAPIDTO = mapper.readValue(new URL(url), BoredAPIDTO.class);
+            peopleDTO = mapper.readValue(new URL(url), PeopleDTO.class);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        return boredAPIDTO;
+        return peopleDTO;
     }
 }

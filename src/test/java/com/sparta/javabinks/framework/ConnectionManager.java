@@ -1,4 +1,4 @@
-package com.sparta.javabinks.dtos;
+package com.sparta.javabinks.framework;
 
 import java.io.IOException;
 import java.net.URI;

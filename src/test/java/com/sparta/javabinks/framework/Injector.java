@@ -1,6 +1,7 @@
-package com.sparta.javabinks.dtos;
+package com.sparta.javabinks.framework;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sparta.javabinks.dtos.BoredAPIDTO;
 
 import java.io.IOException;
 import java.net.URL;

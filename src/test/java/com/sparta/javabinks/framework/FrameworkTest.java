@@ -2,8 +2,11 @@ package com.sparta.javabinks.framework;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.sparta.javabinks.dtos.PeopleDTO;
 import com.sparta.javabinks.framework.ConnectionManager;
 import org.hamcrest.Matcher;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,20 +26,31 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class FrameworkTest {
     ObjectMapper mapper = new ObjectMapper();
+    static String response;
 
+    @BeforeAll
+    static void setupAll(){
+        response = given().get(ConnectionManager.getConnection())
+                .then()
+                .extract()
+                .asString();
+    }
 
     @Test
-    @DisplayName("Connection response starts with {")
+    @DisplayName("JSON response starts in correct format '{'")
     public void testConnectionStartsWithCorrectFormat(){
-        given().get(ConnectionManager.getConnection()).
-                then()
-                .assertThat()
-                .extract()
-                .toString()
-                .substring(0, 1)
-                .equals("{");
+        String actual = response.substring(0,1);
+        String expected = "{";
+        Assertions.assertEquals(expected,actual);
     }
-    
+
+    @Test
+    @DisplayName("JSON response starts in correct format '}'")
+    public void testConnectionEndsWithCorrectFormat(){
+        String actual = response.substring(response.length()-1);
+        String expected = "}";
+        Assertions.assertEquals(expected,actual);
+    }
 
     @Test
     @DisplayName("Connection returns Status Code 200")
@@ -46,7 +60,6 @@ public class FrameworkTest {
                 .assertThat()
                 .statusCode(200);
     }
-
 
     @ParameterizedTest
     @MethodSource("headersHaveValues")
@@ -83,5 +96,4 @@ public class FrameworkTest {
             e.printStackTrace();
         }
     }
-
 }

@@ -18,55 +18,58 @@ public class Injector {
         }
         return peopleDTO;
     }
-//    public static FilmDTO injectFilmDTO(String url) {
-//        FilmDTO filmDTO = null;
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            filmDTO = mapper.readValue(new URL(url), filmDTO.class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return filmDTO;
-//    }
-//    public static PlanetsDTO injectPlantsDTO(String url) {
-//        PlanetsDTO planetsDTO = null;
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            planetsDTO = mapper.readValue(new URL(url), planetsDTO.class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return planetsDTO;
-//    }
-//    public static StarshipsDTO injectStarshipsDTO(String url) {
-//        StarshipsDTO starshipsDTO = null;
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            starshipsDTO = mapper.readValue(new URL(url), starshipsDTO.class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return starshipsDTO;
-//    }
-//    public static SpeciesDTO injectSpeciesDTO(String url) {
-//        SpeciesDTO speciesDTO = null;
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            speciesDTO = mapper.readValue(new URL(url), speciesDTO.class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return speciesDTO;
-//    }
-//
-//    public static VehiclesDTO injectVehiclesDTO(String url) {
-//        VehiclesDTO vehiclesDTO = null;
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            vehiclesDTO = mapper.readValue(new URL(url), vehiclesDTO.class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return vehiclesDTO;
-//    }
+
+
+    public static FilmDTO injectFilmDTO(String url) {
+        FilmDTO filmDTO = null;
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            filmDTO = mapper.readValue(new URL(url), FilmDTO.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return filmDTO;
+    }
+    public static PlanetsDTO injectPlantsDTO(String url) {
+        PlanetsDTO planetsDTO = null;
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            planetsDTO = mapper.readValue(new URL(url), PlanetsDTO.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return planetsDTO;
+    }
+    public static StarshipsDTO injectStarshipsDTO(String url) {
+        StarshipsDTO starshipsDTO = null;
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            starshipsDTO = mapper.readValue(new URL(url), StarshipsDTO.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return starshipsDTO;
+    }
+    public static SpeciesDTO injectSpeciesDTO(String url) {
+        SpeciesDTO speciesDTO = null;
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            speciesDTO = mapper.readValue(new URL(url), SpeciesDTO.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return speciesDTO;
+    }
+
+    public static VehiclesDTO injectVehiclesDTO(String url) {
+        VehiclesDTO vehiclesDTO = null;
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            vehiclesDTO = mapper.readValue(new URL(url), VehiclesDTO.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return vehiclesDTO;
+    }
+
 }

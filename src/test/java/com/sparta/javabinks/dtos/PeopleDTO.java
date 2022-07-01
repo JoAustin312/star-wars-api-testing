@@ -148,6 +148,72 @@ public class PeopleDTO{
 		}
 	}
 
+	public boolean homeworldURLCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			Matcher match = pat.matcher(homeworld);
+			return match.matches();
+		} catch (RuntimeException e) {
+			return false;
+		}
+	}
+	public boolean checkFilmUrlsAreCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String film : films) {
+				Matcher match = pat.matcher(film);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean checkVehicleUrlsAreCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String vehicle : vehicles) {
+				Matcher match = pat.matcher(vehicle);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean checkStarshipsUrlsAreCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String starship : starships) {
+				Matcher match = pat.matcher(starship);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean checkSpeciesUrlsAreCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String species : species) {
+				Matcher match = pat.matcher(species);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+
 
 	public boolean hasBeenInAFilm() { return films != null; }
 	public boolean areFilmsEmpty() { return films.isEmpty(); }

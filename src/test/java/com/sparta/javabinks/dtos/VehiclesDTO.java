@@ -137,6 +137,33 @@ public class VehiclesDTO{
 		}
 	}
 
+	public boolean checkPilotsURLFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String pilot : pilots) {
+				Matcher match = pat.matcher(pilot);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean checkFilmsURLFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String film : films) {
+				Matcher match = pat.matcher(film);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	public boolean hasMaxAtmospheringSpeed() { return maxAtmospheringSpeed != null; }
 	public boolean hasCargoCapacity() { return cargoCapacity != null; }
 	public boolean hasFilms() { return films != null; }

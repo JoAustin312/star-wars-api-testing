@@ -129,6 +129,34 @@ public class SpeciesDTO{
 			return false;
 		}
 	}
+	public boolean checkPeopleURLFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String people : people) {
+				Matcher match = pat.matcher(people);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean checkFilmsURLFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String film : films) {
+				Matcher match = pat.matcher(film);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 
 	public boolean hasFilms() { return films != null; }
 	public boolean areFilmsEmpty() { return films.isEmpty(); }

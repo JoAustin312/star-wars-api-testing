@@ -57,4 +57,17 @@ public class ConnectionManager {
         }
         return httpResponse;
     }
+    public static String getResponse(String extension) {
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest httpRequest = null;
+        HttpResponse<String> httpResponse;
+        try {
+            httpRequest = HttpRequest.newBuilder(URI.create(BASEURL + extension)).build();
+            httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            String responseBody = httpResponse.body();
+            return responseBody;
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

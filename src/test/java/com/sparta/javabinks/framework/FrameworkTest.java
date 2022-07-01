@@ -27,13 +27,12 @@ import static org.hamcrest.Matchers.notNullValue;
 public class FrameworkTest {
     ObjectMapper mapper = new ObjectMapper();
     static String response;
+    static String specificResponse;
 
     @BeforeAll
     static void setupAll(){
-        response = given().get(ConnectionManager.getConnection())
-                .then()
-                .extract()
-                .asString();
+        response = ConnectionManager.getResponse("/people/1");
+
     }
 
     @Test
@@ -55,10 +54,7 @@ public class FrameworkTest {
     @Test
     @DisplayName("Connection returns Status Code 200")
     void ableToConnect(){
-        given().get(ConnectionManager.getConnection())
-                .then()
-                .assertThat()
-                .statusCode(200);
+        Assertions.assertEquals(200, ConnectionManager.getStatusCode());
     }
 
     @ParameterizedTest
@@ -84,12 +80,7 @@ public class FrameworkTest {
     @Test
     @DisplayName("Extract JSON into File")
     void extractJSON(){
-        String JSON = given().get(ConnectionManager.getConnection())
-                .then()
-                .assertThat()
-                .statusCode(200)
-                .extract()
-                .asString();
+        String JSON = response;
         try {
             mapper.writeValue(Paths.get("src/test/resources/StarWarsInfo.json").toFile(), JSON);
         } catch (IOException e) {

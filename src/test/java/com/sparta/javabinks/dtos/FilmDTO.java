@@ -1,5 +1,6 @@
 package com.sparta.javabinks.dtos;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -101,6 +102,12 @@ public class FilmDTO{
 
 	public String getProducer(){
 		return producer;
+	}
+
+	public boolean createdBeforeEdited() {
+		ZonedDateTime createdDate = ZonedDateTime.parse(created);
+		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
+		return createdDate.isBefore(editedDate);
 	}
 
 	public boolean hasEditedDate() { return edited != null; }

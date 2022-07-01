@@ -135,4 +135,7 @@ public class VehiclesDTO{
 	public boolean hasCostInCredits() { return costInCredits != null; }
 	public boolean hasName() { return name != null; }
 	public boolean hasModel() { return model != null; }
+
+	public boolean validOptionsForVehicleClass() {return vehicleClass.contains("Wheeled") || vehicleClass.contains("Repulsorcraft"); }
+
 }

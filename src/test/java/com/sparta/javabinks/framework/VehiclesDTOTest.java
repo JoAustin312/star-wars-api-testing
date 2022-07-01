@@ -129,7 +129,10 @@ public class VehiclesDTOTest {
         @DisplayName("Check pilots is empty ")
         void pilotsEmpty() {
             assertTrue(vehiclesDTO.arePilotsEmpty());}
-
+        @Test
+        @DisplayName("Check vehicle class options are either Wheeled or Repulsorcraft ")
+        void vehicleClassOptions() {
+            assertTrue(vehiclesDTO.validOptionsForVehicleClass());}
 
     }
 }

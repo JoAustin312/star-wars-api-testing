@@ -76,6 +76,7 @@ public class ApiTesting {
     @Test
     @DisplayName("Extract JSON into File")
     void extractJSON(){
+        Assertions.assertTrue(ConnectionManager.getStatusCode() == 200);
         String JSON = response;
         try {
             mapper.writeValue(Paths.get("src/test/resources/StarWarsInfo.json").toFile(), JSON);

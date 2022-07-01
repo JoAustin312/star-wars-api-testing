@@ -127,20 +127,24 @@ public class PeopleDTO{
 		);
 	}
 
-	public boolean hasBeenInAFilm() { return films != null && !films.isEmpty(); }
+	public boolean hasBeenInAFilm() { return films != null; }
+	public boolean areFilmsEmpty() { return films.isEmpty(); }
 	public boolean hasHomeworld() { return homeworld != null; }
 	public boolean hasGender() { return gender != null; }
 	public boolean hasSkinColor() { return skinColor != null; }
 	public boolean hasEditedDate() { return edited != null; }
 	public boolean hasCreatedDate() { return created != null; }
 	public boolean hasMass() { return mass != null; }
-	public boolean hasVehicles() { return vehicles != null && !vehicles.isEmpty(); }
+	public boolean hasVehicles() { return vehicles != null; }
+	public boolean areVehiclesEmpty() { return vehicles.isEmpty(); }
 	public boolean hasUrl() { return url != null; }
 	public boolean hasHairColor() { return hairColor != null; }
 	public boolean hasBirthYear() { return birthYear != null; }
 	public boolean hasEyeColor() { return eyeColor != null; }
-	public boolean hasSpecies() { return species != null && !species.isEmpty(); }
-	public boolean hasStartships() { return starships != null && !starships.isEmpty(); }
+	public boolean hasSpecies() { return species != null; }
+	public boolean areSpeciesEmpty() { return species.isEmpty(); }
+	public boolean hasStartships() { return starships != null; }
+	public boolean areStarshipsEmpty() { return starships.isEmpty(); }
 	public boolean hasName() { return name != null; }
 	public boolean hasHeight() { return height != null; }
 }

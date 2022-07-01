@@ -103,7 +103,8 @@ public class PlanetsDTO{
 		return terrain;
 	}
 
-	public boolean hasFilms() { return films != null && !films.isEmpty(); }
+	public boolean hasFilms() { return films != null; }
+	public boolean areFilmsEmpty() { return films.isEmpty(); }
 	public boolean hasEditedDate() { return edited != null; }
 	public boolean hasCreatedDate() { return created != null; }
 	public boolean hasClimate() { return climate != null; }
@@ -115,6 +116,7 @@ public class PlanetsDTO{
 	public boolean hasDiameter() { return diameter != null; }
 	public boolean hasGravity() { return gravity != null; }
 	public boolean hasName() { return name != null; }
-	public boolean hasResidents() { return residents != null && !residents.isEmpty(); }
+	public boolean hasResidents() { return residents != null; }
+	public boolean areResidentsEmpty() { return residents.isEmpty(); }
 	public boolean hasTerrain() { return terrain != null; }
 }

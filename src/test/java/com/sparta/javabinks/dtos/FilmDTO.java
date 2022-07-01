@@ -106,15 +106,20 @@ public class FilmDTO{
 	public boolean hasEditedDate() { return edited != null; }
 	public boolean hasDirector() { return director != null; }
 	public boolean hasCreatedDate() { return created != null; }
-	public boolean hasVehicles() { return vehicles != null && !vehicles.isEmpty(); }
+	public boolean hasVehicles() { return vehicles != null; }
+	public boolean areVehiclesEmpty() { return vehicles.isEmpty(); }
 	public boolean hasOpeningCrawl() { return openingCrawl != null; }
 	public boolean hasTitle() { return title != null; }
 	public boolean hasUrl() { return url != null; }
-	public boolean hasCharacters() { return characters != null && !characters.isEmpty(); }
+	public boolean hasCharacters() { return characters != null; }
+	public boolean areCharactersEmpty() { return characters.isEmpty(); }
 	public boolean hasEpisodeId() { return episodeId != null; }
-	public boolean hasPlanets() { return planets != null && !planets.isEmpty(); }
+	public boolean hasPlanets() { return planets != null; }
+	public boolean arePlanetsEmpty() { return planets.isEmpty(); }
 	public boolean hasReleaseDate() { return releaseDate != null; }
-	public boolean hasStarships() { return starships != null && !starships.isEmpty(); }
-	public boolean hasSpecies() { return species != null && !species.isEmpty(); }
+	public boolean hasStarships() { return starships != null; }
+	public boolean areStarshipsEmpty() { return starships.isEmpty(); }
+	public boolean hasSpecies() { return species != null; }
+	public boolean areSpeciesEmpty() { return species.isEmpty(); }
 	public boolean hasProducer() { return producer != null; }
 }

@@ -133,9 +133,11 @@ public class StarshipsDTO{
 
 	public boolean hasMaxAtmospheringSpeed() { return maxAtmospheringSpeed != null; }
 	public boolean hasCargoCapacity() { return cargoCapacity != null; }
-	public boolean hasFilms() { return films != null && !films.isEmpty(); }
+	public boolean hasFilms() { return films != null; }
+	public boolean areFilmsEmpty() { return films.isEmpty(); }
 	public boolean hasPassengers() { return passengers != null; }
-	public boolean hasPilots() { return pilots != null && !pilots.isEmpty(); }
+	public boolean hasPilots() { return pilots != null; }
+	public boolean arePilotsEmpty() { return pilots.isEmpty(); }
 	public boolean hasEditedDate() { return edited != null; }
 	public boolean hasConsumables() { return consumables != null; }
 	public boolean hasMGLT() { return mGLT != null; }

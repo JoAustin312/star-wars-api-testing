@@ -110,7 +110,8 @@ public class SpeciesDTO{
 		return averageLifespan;
 	}
 
-	public boolean hasFilms() { return films != null && !films.isEmpty(); }
+	public boolean hasFilms() { return films != null; }
+	public boolean areFilmsEmpty() { return films.isEmpty(); }
 	public boolean hasSkinColors() { return skinColors != null; }
 	public boolean hasHomeworld() { return homeworld != null; }
 	public boolean hasEditedDate() { return edited != null; }
@@ -118,7 +119,8 @@ public class SpeciesDTO{
 	public boolean hasEyeColors() { return eyeColors != null; }
 	public boolean hasLanguage() { return language != null; }
 	public boolean hasClassification() { return classification != null; }
-	public boolean hasPeople() { return people != null && !people.isEmpty(); }
+	public boolean hasPeople() { return people != null; }
+	public boolean arePeopleEmpty() { return people.isEmpty(); }
 	public boolean hasUrl() { return url != null; }
 	public boolean hasHairColors() { return hairColors != null; }
 	public boolean hasAverageHeight() { return averageHeight != null; }

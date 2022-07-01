@@ -57,6 +57,7 @@ public class ConnectionManager {
         }
         return httpResponse;
     }
+
     public static String getResponse(String extension) {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = null;

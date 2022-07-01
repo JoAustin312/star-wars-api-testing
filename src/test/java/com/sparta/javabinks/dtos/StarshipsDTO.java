@@ -2,6 +2,9 @@ package com.sparta.javabinks.dtos;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class StarshipsDTO{
@@ -137,6 +140,45 @@ public class StarshipsDTO{
 		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
 		return createdDate.isBefore(editedDate);
 	}
+	public boolean urlCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			Matcher match = pat.matcher(url);
+			return match.matches();
+		} catch (RuntimeException e) {
+			return false;
+		}
+	}
+
+	public boolean checkPilotsURLFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String pilot : pilots) {
+				Matcher match = pat.matcher(pilot);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean checkFilmsURLFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String film : films) {
+				Matcher match = pat.matcher(film);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 
 	public boolean hasMaxAtmospheringSpeed() { return maxAtmospheringSpeed != null; }
 	public boolean hasCargoCapacity() { return cargoCapacity != null; }

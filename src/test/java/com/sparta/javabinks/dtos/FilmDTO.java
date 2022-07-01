@@ -123,12 +123,12 @@ public class FilmDTO{
 		}
 	}
 
-	public boolean checkCharacterURLFormat(){
+	public boolean checkFieldURLFormat(List<String> array){
 		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 		try {
 			Pattern pat = Pattern.compile(pattern);
-			for (String character : characters) {
-				Matcher match = pat.matcher(character);
+			for (String field : array) {
+				Matcher match = pat.matcher(field);
 				return match.matches();
 			}
 		} catch (RuntimeException e) {
@@ -137,47 +137,21 @@ public class FilmDTO{
 		return false;
 	}
 
-	public boolean checkPlanetURLFormat(){
-		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
-		try {
-			Pattern pat = Pattern.compile(pattern);
-			for (String planet : planets) {
-				Matcher match = pat.matcher(planet);
-				return match.matches();
-			}
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		}
-		return false;
+	public boolean checkCharactersHasValidUrl(){
+		return checkFieldURLFormat(characters);
+	}
+	public boolean checkPlanetsHasValidUrl(){
+		return checkFieldURLFormat(planets);
 	}
 
-	public boolean checkStarshipsURLFormat(){
-		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
-		try {
-			Pattern pat = Pattern.compile(pattern);
-			for (String starship : starships) {
-				Matcher match = pat.matcher(starship);
-				return match.matches();
-			}
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		}
-		return false;
+	public boolean checkStarshipsHasValidUrl(){
+		return checkFieldURLFormat(starships);
+	}
+	public boolean checkSpeciesHasValidUrl(){
+		return checkFieldURLFormat(species);
 	}
 
-	public boolean checkVehicleURLFormat(){
-		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
-		try {
-			Pattern pat = Pattern.compile(pattern);
-			for (String vehicle : vehicles) {
-				Matcher match = pat.matcher(vehicle);
-				return match.matches();
-			}
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
+
 
 
 	public boolean hasEditedDate() { return edited != null; }

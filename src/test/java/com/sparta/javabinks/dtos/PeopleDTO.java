@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -197,6 +201,55 @@ public class PeopleDTO{
 				getGender().equals("Female")||
 				getGender().equals("unknown")||
 				getGender().equals("n/a") );
+	}
+
+	public boolean urlCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			Matcher match = pat.matcher(url);
+			return match.matches();
+		} catch (RuntimeException e) {
+			return false;
+		}
+	}
+
+	public boolean homeworldURLCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			Matcher match = pat.matcher(homeworld);
+			return match.matches();
+		} catch (RuntimeException e) {
+			return false;
+		}
+	}
+	public boolean checkFieldURLFormat(List<String> array){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String field : array) {
+				Matcher match = pat.matcher(field);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean checkFilmsHasValidUrl(){
+		return checkFieldURLFormat(films);
+	}
+	public boolean checkSpeciesHasValidUrl(){
+		return checkFieldURLFormat(species);
+	}
+
+	public boolean checkVehiclessHasValidUrl(){
+		return checkFieldURLFormat(vehicles);
+	}
+
+	public boolean checkStarshipsHasValidUrl(){
+		return checkFieldURLFormat(starships);
 	}
 
 	public boolean hasBeenInAFilm() { return films != null; }

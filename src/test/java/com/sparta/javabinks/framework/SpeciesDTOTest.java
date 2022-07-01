@@ -131,6 +131,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
                 assertTrue(speciesDTO.hasAverageLifespan());
             }
 
+            @Test
+            @DisplayName("Check has classification contain mammal or reptile ")
+            void checkmammalorreptile() {
+                assertTrue(speciesDTO.hascointainmammalorreptile());
+                }
+            @Test
+            @DisplayName("Check average height is in centimeters ")
+            void checkavgheightincentimeters() {
+                assertTrue(speciesDTO.hasAverageHeightincentimeters());
+            }
+            @Test
+            @DisplayName("Check created date before the edited date ")
+            void ceckfordatescreatedandedited() {
+                assertTrue(speciesDTO.createdBeforeEdited());
+            }
+
+
         }
     }
 

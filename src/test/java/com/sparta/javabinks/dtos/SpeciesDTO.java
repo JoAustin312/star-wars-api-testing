@@ -130,8 +130,22 @@ public class SpeciesDTO{
 	public boolean arePeopleEmpty() { return people.isEmpty(); }
 	public boolean hasUrl() { return url != null; }
 	public boolean hasHairColors() { return hairColors != null; }
-	public boolean hasAverageHeight() { return averageHeight != null; }
+	public boolean hasAverageHeight() { return (averageHeight != null || averageHeight.equals("n/a")); 	}
 	public boolean hasName() { return name != null; }
-	public boolean hasDesignation() { return designation != null; }
+	public boolean hasDesignation() { return designation != null && designation.equals("sentient"); }
 	public boolean hasAverageLifespan() { return averageLifespan != null; }
+	public boolean hascointainmammalorreptile(){ return ( (classification.equals("mammal") || classification.equals("reptile")));}
+
+
+
+	public boolean hasAverageHeightincentimeters() {
+		try {
+			Integer.parseInt(averageHeight);
+			return true;
+		}catch (NumberFormatException e) {
+			return false;
+		}
+
+	}
+
 }

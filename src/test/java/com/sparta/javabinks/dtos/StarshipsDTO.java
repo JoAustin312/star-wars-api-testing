@@ -138,7 +138,7 @@ public class StarshipsDTO{
 		return createdDate.isBefore(editedDate);
 	}
 
-	public boolean hasMaxAtmospheringSpeed() { return maxAtmospheringSpeed != null; }
+	public boolean hasMaxAtmospheringSpeed() { return maxAtmospheringSpeed != null || maxAtmospheringSpeed.equals("n/a"); }
 	public boolean hasCargoCapacity() { return cargoCapacity != null; }
 	public boolean hasFilms() { return films != null; }
 	public boolean areFilmsEmpty() { return films.isEmpty(); }

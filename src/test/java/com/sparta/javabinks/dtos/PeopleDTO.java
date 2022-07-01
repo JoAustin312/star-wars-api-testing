@@ -4,6 +4,7 @@ import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.junit.jupiter.api.Assumptions;
 
 public class PeopleDTO{
 
@@ -132,6 +133,12 @@ public class PeopleDTO{
 		ZonedDateTime createdDate = ZonedDateTime.parse(created);
 		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
 		return createdDate.isBefore(editedDate);
+	}
+	public boolean Gendercheck(){
+		return (getGender().equals("male")||
+				getGender().equals("Female")||
+				getGender().equals("unknown")||
+				getGender().equals("n/a") );
 	}
 
 	public boolean hasBeenInAFilm() { return films != null; }

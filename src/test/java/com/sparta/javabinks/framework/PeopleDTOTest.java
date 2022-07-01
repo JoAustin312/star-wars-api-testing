@@ -133,11 +133,7 @@ public class PeopleDTOTest {
         @Test
         @DisplayName("Gender check")
         void checkForGender(){
-            Assumptions.assumeTrue(peopleDTO.getGender().equals("male")||
-                    peopleDTO.getGender().equals("Female")||
-                    peopleDTO.getGender().equals("unknown")||
-                    peopleDTO.getGender().equals("n/a") );
-            assertEquals(peopleDTO.getGender(),"n/a");
+           assertEquals(peopleDTO.getGender(),"n/a");
 
         }
         @Test
@@ -145,6 +141,12 @@ public class PeopleDTOTest {
         void checkfordatecreatedBeforeEdited(){
             assertTrue(peopleDTO.createdBeforeEdited());
         }
+        @Test
+        @DisplayName("Check for the dates been created before edited")
+        void checkforGender(){
+            assertTrue(peopleDTO.Gendercheck());
+        }
+
 
 
 

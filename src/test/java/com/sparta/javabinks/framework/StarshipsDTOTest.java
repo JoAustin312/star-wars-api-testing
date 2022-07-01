@@ -142,6 +142,13 @@ public class StarshipsDTOTest {
             assertTrue(starshipsDTO.hasConsumables());
         }
 
+        @Test
+        @DisplayName("Check created date before the edited date ")
+        void checkForDateCreatedAndEdited() {
+            assertTrue(starshipsDTO.createdBeforeEdited());
+        }
+
+
     }
 }
 

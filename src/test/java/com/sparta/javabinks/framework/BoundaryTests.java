@@ -50,7 +50,4 @@ public class BoundaryTests {
     void vehicleValues(int extension){
         given().get(ConnectionManager.getConnection("vehicles/"+extension)).then().assertThat().statusCode(200);
     }
-
-
-
 }

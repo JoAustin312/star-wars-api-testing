@@ -137,12 +137,12 @@ public class VehiclesDTO{
 		}
 	}
 
-	public boolean checkPilotsURLFormat(){
+	public boolean checkFieldURLFormat(List<String> array){
 		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 		try {
 			Pattern pat = Pattern.compile(pattern);
-			for (String pilot : pilots) {
-				Matcher match = pat.matcher(pilot);
+			for (String field : array) {
+				Matcher match = pat.matcher(field);
 				return match.matches();
 			}
 		} catch (RuntimeException e) {
@@ -150,19 +150,14 @@ public class VehiclesDTO{
 		}
 		return false;
 	}
-	public boolean checkFilmsURLFormat(){
-		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
-		try {
-			Pattern pat = Pattern.compile(pattern);
-			for (String film : films) {
-				Matcher match = pat.matcher(film);
-				return match.matches();
-			}
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		}
-		return false;
+	public boolean checkFilmsHasValidUrl(){
+		return checkFieldURLFormat(films);
 	}
+
+	public boolean checkPilotsHasValidUrl(){
+		return checkFieldURLFormat(pilots);
+	}
+
 
 	public boolean hasMaxAtmospheringSpeed() { return maxAtmospheringSpeed != null; }
 	public boolean hasCargoCapacity() { return cargoCapacity != null; }

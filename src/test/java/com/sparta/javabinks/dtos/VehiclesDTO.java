@@ -1,5 +1,6 @@
 package com.sparta.javabinks.dtos;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -115,6 +116,12 @@ public class VehiclesDTO{
 
 	public String getModel(){
 		return model;
+	}
+
+	public boolean createdBeforeEdited() {
+		ZonedDateTime createdDate = ZonedDateTime.parse(created);
+		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
+		return createdDate.isBefore(editedDate);
 	}
 
 	public boolean hasMaxAtmospheringSpeed() { return maxAtmospheringSpeed != null; }

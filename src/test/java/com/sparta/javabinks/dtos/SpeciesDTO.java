@@ -117,6 +117,17 @@ public class SpeciesDTO{
 		return createdDate.isBefore(editedDate);
 	}
 
+	public boolean hasAverageHeightincentimeters() {
+		try {
+			Integer.parseInt(averageHeight);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	public boolean hascointainmammalorreptile(){ return ( (classification.equals("mammal") || classification.equals("reptile")));}
+
 	public boolean hasFilms() { return films != null; }
 	public boolean areFilmsEmpty() { return films.isEmpty(); }
 	public boolean hasSkinColors() { return skinColors != null; }
@@ -130,8 +141,7 @@ public class SpeciesDTO{
 	public boolean arePeopleEmpty() { return people.isEmpty(); }
 	public boolean hasUrl() { return url != null; }
 	public boolean hasHairColors() { return hairColors != null; }
-	public boolean hasAverageHeight() { return averageHeight != null; }
-	public boolean hasName() { return name != null; }
-	public boolean hasDesignation() { return designation != null; }
+	public boolean hasAverageHeight() { return (averageHeight != null || averageHeight.equals("n/a"));  }	public boolean hasName() { return name != null; }
+	public boolean hasDesignation() { return designation != null && designation.equals("sentient"); }
 	public boolean hasAverageLifespan() { return averageLifespan != null; }
 }

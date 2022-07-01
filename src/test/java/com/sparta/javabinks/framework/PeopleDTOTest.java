@@ -141,7 +141,11 @@ public class PeopleDTOTest {
 
         }
 
-
+        @Test
+        @DisplayName("Check for the dates been created before edited")
+        void checkfordatecreatedBeforeEdited(){
+            assertTrue(peopleDTO.createdBeforeEdited());
+        }
     }
 }
 

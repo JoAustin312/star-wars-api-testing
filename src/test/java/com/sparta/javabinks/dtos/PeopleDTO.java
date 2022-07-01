@@ -1,8 +1,11 @@
 package com.sparta.javabinks.dtos;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PeopleDTO{
@@ -128,10 +131,72 @@ public class PeopleDTO{
 		);
 	}
 
+	public boolean hasValidGender(String value) {
+		if (!hasGender()) return false;
+		return getPossibleGenders().contains(value);
+	}
+
 	public boolean createdBeforeEdited() {
 		ZonedDateTime createdDate = ZonedDateTime.parse(created);
 		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
 		return createdDate.isBefore(editedDate);
+	}
+
+	public boolean hasValidValueInFile(String value, String path) {
+		Set<String> set = new HashSet<>();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(path));
+			reader.readLine();
+			reader.lines().map(String::trim)
+					.map((x) -> x.replace("\"", ""))
+					.map((x) -> x.replace(",", ""))
+					.filter((x) -> !x.equals(""))
+					.map((x) -> x.split(" "))
+					.forEach((x) -> Collections.addAll(set, x));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		return set.contains(value);
+	}
+
+	public boolean hasValidHairColor() {
+		if (!hasHairColor()) return false;
+		boolean valid = false;
+		String[] hairColorsAsArray = hairColor.split(", ");
+		for (String color : hairColorsAsArray) {
+			if (hasValidValueInFile(color, "src/test/resources/haircolour.csv"))
+				valid = true;
+		}
+		return valid;
+	}
+
+	public boolean hasValidEyeColor() {
+		if (!hasHairColor()) return false;
+		boolean valid = false;
+		String[] hairColorsAsArray = hairColor.split(", ");
+		for (String color : hairColorsAsArray) {
+			if (hasValidValueInFile(color, "src/test/resources/eyecolour.csv"))
+				valid = true;
+		}
+		return valid;
+	}
+
+	public boolean hasValidSkinColor() {
+		if (!hasHairColor()) return false;
+		boolean valid = false;
+		String[] hairColorsAsArray = hairColor.split(", ");
+		for (String color : hairColorsAsArray) {
+			if (hasValidValueInFile(color, "src/test/resources/skincolour.csv"))
+				valid = true;
+		}
+		return valid;
+	}
+
+	public boolean Gendercheck(){
+		return (getGender().equals("male")||
+				getGender().equals("Female")||
+				getGender().equals("unknown")||
+				getGender().equals("n/a") );
 	}
 
 	public boolean hasBeenInAFilm() { return films != null; }

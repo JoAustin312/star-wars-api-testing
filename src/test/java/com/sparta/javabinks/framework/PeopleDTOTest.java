@@ -2,20 +2,18 @@ package com.sparta.javabinks.framework;
 
 
 import com.sparta.javabinks.dtos.PeopleDTO;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.sparta.javabinks.framework.ConnectionManager.getConnection;
 import static com.sparta.javabinks.framework.Injector.injectPeopleDTO;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PeopleDTOTest {
     PeopleDTO peopleDTO;
+
     @BeforeEach
-    void setup(){
-        peopleDTO =  injectPeopleDTO(getConnection("people/3"));
+    void setup() {
+        peopleDTO = injectPeopleDTO(getConnection("people/3"));
     }
 
 
@@ -25,96 +23,136 @@ public class PeopleDTOTest {
 
         @Test
         @DisplayName("Check Flim not contain the null value ")
-        void Filmcontain(){
-            assertNotNull(peopleDTO.hasBeenInAFilm());
+        void Filmcontain() {
+            assertTrue(peopleDTO.hasBeenInAFilm());
         }
+
         @Test
         @DisplayName("Check people has home world ")
-        void hasHomeWorld(){
-            assertNotNull(peopleDTO.hasHomeworld());
+        void hasHomeWorld() {
+            assertTrue(peopleDTO.hasHomeworld());
         }
+
         @Test
         @DisplayName("Check people has home world ")
-        void hasGender(){
-            assertNotNull(peopleDTO.hasGender());
+        void hasGender() {
+            assertTrue(peopleDTO.hasGender());
         }
+
         @Test
         @DisplayName("Check people's hasSkinColor is not null ")
-        void hasSkinColor(){
-            assertNotNull(peopleDTO.hasSkinColor());
+        void hasSkinColor() {
+            assertTrue(peopleDTO.hasSkinColor());
         }
+
         @Test
         @DisplayName("Check people's edit date is not null ")
-        void hasEditedDate(){
-            assertNotNull(peopleDTO.hasEditedDate());
+        void hasEditedDate() {
+            assertTrue(peopleDTO.hasEditedDate());
         }
+
         @Test
         @DisplayName("Check people's edit date is not null ")
-        void hasCreatedDate(){
-            assertNotNull(peopleDTO.hasCreatedDate());
+        void hasCreatedDate() {
+            assertTrue(peopleDTO.hasCreatedDate());
         }
+
         @Test
         @DisplayName("Check people's Mass is not null ")
-        void hasMass(){
-            assertNotNull(peopleDTO.hasMass());
+        void hasMass() {
+            assertTrue(peopleDTO.hasMass());
         }
+
         @Test
         @DisplayName("Check people's Mass is not null ")
-        void hasVehicles(){
-            assertNotNull(peopleDTO.hasVehicles());
+        void hasVehicles() {
+            assertTrue(peopleDTO.hasVehicles());
         }
+
         @Test
         @DisplayName("Check url is not null ")
-        void hasurl(){
-            assertNotNull(peopleDTO.hasUrl());
+        void hasurl() {
+            assertTrue(peopleDTO.hasUrl());
         }
+
         @Test
         @DisplayName("Check people's Mass is not null ")
-        void hairColour(){
-            assertNotNull(peopleDTO.hasHairColor());
+        void hairColour() {
+            assertTrue(peopleDTO.hasHairColor());
         }
+
         @Test
         @DisplayName("Check people's birth is not null ")
-        void checkbirthyear(){
-            assertNotNull(peopleDTO.hasBirthYear());
+        void checkbirthyear() {
+            assertTrue(peopleDTO.hasBirthYear());
         }
+
         @Test
         @DisplayName("Check people's birth is not null ")
-        void checkBirthYearNull(){
-            assertNotNull(peopleDTO.hasBirthYear());
+        void checkBirthYearNull() {
+            assertTrue(peopleDTO.hasBirthYear());
         }
+
         @Test
         @DisplayName("Check EyeClourNull is not null ")
-        void checkEyeClourNull(){
-            assertNotNull(peopleDTO.hasEyeColor());
+        void checkEyeClourNull() {
+            assertTrue(peopleDTO.hasEyeColor());
         }
+
         @Test
         @DisplayName("Check people's birth is not null ")
-        void checkspeciesNull(){
-            assertNotNull(peopleDTO.hasSpecies());
+        void checkspeciesNull() {
+            assertTrue(peopleDTO.hasSpecies());
         }
+
         @Test
         @DisplayName("Check hasStartships is not null ")
-        void checkStartShipsNull(){
-            assertNotNull(peopleDTO.hasStartships());
+        void checkStartShipsNull() {
+            assertTrue(peopleDTO.hasStartships());
         }
+
         @Test
         @DisplayName("Check people's birth is not null ")
-        void checkNamesNull(){
-            assertNotNull(peopleDTO.hasName());
+        void checkNamesNull() {
+            assertTrue(peopleDTO.hasName());
         }
+
         @Test
         @DisplayName("Check people's birth is not null ")
-        void checkHeightNull(){
-            assertNotNull(peopleDTO.hasHeight());
+        void checkHeightNull() {
+            assertTrue(peopleDTO.hasHeight());
         }
-
-
-
-
-
 
     }
 
+
+
+    @Nested
+    @DisplayName("To check the Valid test ")
+    class ValidTest{
+        @Test
+        @DisplayName("Gender check")
+        void checkForGender(){
+            Assumptions.assumeTrue(peopleDTO.getGender().equals("male")||
+                    peopleDTO.getGender().equals("Female")||
+                    peopleDTO.getGender().equals("unknown")||
+                    peopleDTO.getGender().equals("n/a") );
+            assertEquals(peopleDTO.getGender(),"n/a");
+
+        }
+
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
 

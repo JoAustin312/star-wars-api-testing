@@ -3,9 +3,12 @@ package com.sparta.javabinks.framework;
 
 import com.sparta.javabinks.dtos.PeopleDTO;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.sparta.javabinks.framework.ConnectionManager.getConnection;
 import static com.sparta.javabinks.framework.Injector.injectPeopleDTO;
+import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PeopleDTOTest {
@@ -125,23 +128,24 @@ public class PeopleDTOTest {
 
     }
 
-
-
     @Nested
     @DisplayName("To check the Valid test ")
-    class ValidTest{
+    class ValidTest {
         @Test
         @DisplayName("Gender check")
-        void checkForGender(){
-            Assumptions.assumeTrue(peopleDTO.getGender().equals("male")||
-                    peopleDTO.getGender().equals("Female")||
-                    peopleDTO.getGender().equals("unknown")||
-                    peopleDTO.getGender().equals("n/a") );
-            assertEquals(peopleDTO.getGender(),"n/a");
+        void checkForGender() {
+            Assumptions.assumeTrue(peopleDTO.getGender().equals("male") ||
+                    peopleDTO.getGender().equals("Female") ||
+                    peopleDTO.getGender().equals("unknown") ||
+                    peopleDTO.getGender().equals("n/a"));
+            assertEquals(peopleDTO.getGender(), "n/a");
 
         }
-
-
+    }
+    @Test
+    @DisplayName("Created Before Edited")
+    void createdBeforeEdited(){
+        assertTrue(peopleDTO.createdBeforeEdited());
     }
 }
 

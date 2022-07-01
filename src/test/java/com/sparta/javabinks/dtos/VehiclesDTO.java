@@ -1,5 +1,6 @@
 package com.sparta.javabinks.dtos;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -135,4 +136,9 @@ public class VehiclesDTO{
 	public boolean hasCostInCredits() { return costInCredits != null; }
 	public boolean hasName() { return name != null; }
 	public boolean hasModel() { return model != null; }
+	public boolean createdBeforeEdited() {
+		ZonedDateTime createdDate = ZonedDateTime.parse(created);
+		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
+		return createdDate.isBefore(editedDate);
+	}
 }

@@ -1,8 +1,10 @@
 package com.sparta.javabinks.dtos;
 
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sparta.javabinks.framework.ConnectionManager;
 
 public class PeopleDTO{
 
@@ -147,4 +149,9 @@ public class PeopleDTO{
 	public boolean areStarshipsEmpty() { return starships.isEmpty(); }
 	public boolean hasName() { return name != null; }
 	public boolean hasHeight() { return height != null; }
+	public boolean createdBeforeEdited() {
+		ZonedDateTime createdDate = ZonedDateTime.parse(created);
+		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
+		return createdDate.isBefore(editedDate);
+	}
 }

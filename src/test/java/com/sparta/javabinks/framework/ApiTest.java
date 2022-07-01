@@ -24,10 +24,9 @@ import static org.hamcrest.Matchers.hasLength;
 import static org.hamcrest.Matchers.notNullValue;
 
 
-public class FrameworkTest {
+public class ApiTest {
     ObjectMapper mapper = new ObjectMapper();
     static String response;
-    static String specificResponse;
 
     @BeforeAll
     static void setupAll(){
@@ -52,7 +51,7 @@ public class FrameworkTest {
     }
 
     @Test
-    @DisplayName("Connection returns Status Code 200")
+    @DisplayName("Connection returns Status Code 200 from base URL")
     void ableToConnect(){
         Assertions.assertEquals(200, ConnectionManager.getStatusCode());
     }

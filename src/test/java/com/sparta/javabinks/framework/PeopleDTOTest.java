@@ -127,7 +127,7 @@ public class PeopleDTOTest {
 
 
 
-    @Nested
+    @Nesgit
     @DisplayName("To check the Valid test ")
     class ValidTest{
         @Test

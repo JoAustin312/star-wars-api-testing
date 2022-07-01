@@ -118,7 +118,7 @@ public class PeopleDTO{
 		return height;
 	}
 
-	public List<String> getPossibleGenders() {
+	public List<Stcheckoutring> getPossibleGenders() {
 		return Arrays.asList(
 				"male",
 				"female",

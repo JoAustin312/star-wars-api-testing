@@ -1,6 +1,10 @@
 package com.sparta.javabinks.dtos;
 
+import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SpeciesDTO{
@@ -110,6 +114,54 @@ public class SpeciesDTO{
 		return averageLifespan;
 	}
 
+	public boolean createdBeforeEdited() {
+		ZonedDateTime createdDate = ZonedDateTime.parse(created);
+		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
+		return createdDate.isBefore(editedDate);
+	}
+	public boolean urlCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			Matcher match = pat.matcher(url);
+			return match.matches();
+		} catch (RuntimeException e) {
+			return false;
+		}
+	}
+	public boolean checkFieldURLFormat(List<String> array){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String field : array) {
+				Matcher match = pat.matcher(field);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean checkFilmsHasValidUrl(){
+		return checkFieldURLFormat(films);
+	}
+	public boolean checkPeopleHasValidUrl(){
+		return checkFieldURLFormat(people);
+	}
+
+
+
+	public boolean hasAverageHeightincentimeters() {
+		try {
+			Integer.parseInt(averageHeight);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	public boolean hascointainmammalorreptile(){ return ( (classification.equals("mammal") || classification.equals("reptile")));}
+
 	public boolean hasFilms() { return films != null; }
 	public boolean areFilmsEmpty() { return films.isEmpty(); }
 	public boolean hasSkinColors() { return skinColors != null; }
@@ -123,8 +175,7 @@ public class SpeciesDTO{
 	public boolean arePeopleEmpty() { return people.isEmpty(); }
 	public boolean hasUrl() { return url != null; }
 	public boolean hasHairColors() { return hairColors != null; }
-	public boolean hasAverageHeight() { return averageHeight != null; }
-	public boolean hasName() { return name != null; }
-	public boolean hasDesignation() { return designation != null; }
+	public boolean hasAverageHeight() { return (averageHeight != null || averageHeight.equals("n/a"));  }	public boolean hasName() { return name != null; }
+	public boolean hasDesignation() { return designation != null && designation.equals("sentient"); }
 	public boolean hasAverageLifespan() { return averageLifespan != null; }
 }

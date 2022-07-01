@@ -1,7 +1,15 @@
 package com.sparta.javabinks.dtos;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.util.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PeopleDTO{
@@ -125,6 +133,123 @@ public class PeopleDTO{
 				"unknown",
 				"n/a"
 		);
+	}
+
+	public boolean hasValidGender(String value) {
+		if (!hasGender()) return false;
+		return getPossibleGenders().contains(value);
+	}
+
+	public boolean createdBeforeEdited() {
+		ZonedDateTime createdDate = ZonedDateTime.parse(created);
+		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
+		return createdDate.isBefore(editedDate);
+	}
+
+	public boolean hasValidValueInFile(String value, String path) {
+		Set<String> set = new HashSet<>();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(path));
+			reader.readLine();
+			reader.lines().map(String::trim)
+					.map((x) -> x.replace("\"", ""))
+					.map((x) -> x.replace(",", ""))
+					.filter((x) -> !x.equals(""))
+					.map((x) -> x.split(" "))
+					.forEach((x) -> Collections.addAll(set, x));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		return set.contains(value);
+	}
+
+	public boolean hasValidHairColor() {
+		if (!hasHairColor()) return false;
+		boolean valid = false;
+		String[] hairColorsAsArray = hairColor.split(", ");
+		for (String color : hairColorsAsArray) {
+			if (hasValidValueInFile(color, "src/test/resources/haircolour.csv"))
+				valid = true;
+		}
+		return valid;
+	}
+
+	public boolean hasValidEyeColor() {
+		if (!hasHairColor()) return false;
+		boolean valid = false;
+		String[] hairColorsAsArray = hairColor.split(", ");
+		for (String color : hairColorsAsArray) {
+			if (hasValidValueInFile(color, "src/test/resources/eyecolour.csv"))
+				valid = true;
+		}
+		return valid;
+	}
+
+	public boolean hasValidSkinColor() {
+		if (!hasHairColor()) return false;
+		boolean valid = false;
+		String[] hairColorsAsArray = hairColor.split(", ");
+		for (String color : hairColorsAsArray) {
+			if (hasValidValueInFile(color, "src/test/resources/skincolour.csv"))
+				valid = true;
+		}
+		return valid;
+	}
+
+	public boolean Gendercheck(){
+		return (getGender().equals("male")||
+				getGender().equals("Female")||
+				getGender().equals("unknown")||
+				getGender().equals("n/a") );
+	}
+
+	public boolean urlCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			Matcher match = pat.matcher(url);
+			return match.matches();
+		} catch (RuntimeException e) {
+			return false;
+		}
+	}
+
+	public boolean homeworldURLCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			Matcher match = pat.matcher(homeworld);
+			return match.matches();
+		} catch (RuntimeException e) {
+			return false;
+		}
+	}
+	public boolean checkFieldURLFormat(List<String> array){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String field : array) {
+				Matcher match = pat.matcher(field);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean checkFilmsHasValidUrl(){
+		return checkFieldURLFormat(films);
+	}
+	public boolean checkSpeciesHasValidUrl(){
+		return checkFieldURLFormat(species);
+	}
+
+	public boolean checkVehiclessHasValidUrl(){
+		return checkFieldURLFormat(vehicles);
+	}
+
+	public boolean checkStarshipsHasValidUrl(){
+		return checkFieldURLFormat(starships);
 	}
 
 	public boolean hasBeenInAFilm() { return films != null; }

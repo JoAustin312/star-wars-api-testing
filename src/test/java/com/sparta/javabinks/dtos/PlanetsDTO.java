@@ -1,6 +1,10 @@
 package com.sparta.javabinks.dtos;
 
+import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PlanetsDTO{
@@ -102,6 +106,49 @@ public class PlanetsDTO{
 	public String getTerrain(){
 		return terrain;
 	}
+
+	public boolean createdBeforeEdited() {
+		ZonedDateTime createdDate = ZonedDateTime.parse(created);
+		ZonedDateTime editedDate = ZonedDateTime.parse(edited);
+		return createdDate.isBefore(editedDate);
+	}
+	public boolean urlCorrectFormat(){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			Matcher match = pat.matcher(url);
+			return match.matches();
+		} catch (RuntimeException e) {
+			return false;
+		}
+	}
+
+	public boolean checkFieldURLFormat(List<String> array){
+		String pattern = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+		try {
+			Pattern pat = Pattern.compile(pattern);
+			for (String field : array) {
+				Matcher match = pat.matcher(field);
+				return match.matches();
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean checkResidentsHasValidUrl(){
+		return checkFieldURLFormat(residents);
+	}
+
+	public boolean checkFilmssHasValidUrl(){
+		return checkFieldURLFormat(films);
+	}
+
+
+
+	public boolean hasBeenInAFilm() { return films != null; }
+
 
 	public boolean hasFilms() { return films != null; }
 	public boolean areFilmsEmpty() { return films.isEmpty(); }

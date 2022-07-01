@@ -140,6 +140,12 @@ public class PeopleDTOTest {
             assertEquals(peopleDTO.getGender(),"n/a");
 
         }
+        @Test
+        @DisplayName("Check for the dates been created before edited")
+        void checkfordatecreatedBeforeEdited(){
+            assertTrue(peopleDTO.createdBeforeEdited());
+        }
+
 
 
     }

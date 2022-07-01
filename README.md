@@ -20,3 +20,6 @@ Some fields had limits on what they can output and cannot exceed that limit, pla
 
 DTO Tests
 DTO tests were carried out to see if the DTOs made are verifying the results which will be visible to the user. The tests were made from a users perspective on what a user can encounter when he runs it and different outcomes to avoid the program from crashing
+Test coverage included; 
+Validity checks for empty/null fields
+Checking 

@@ -47,7 +47,7 @@ public class ConnectionManager {
     public static int getStatusCode() { return getResponse().statusCode(); }
     private static HttpResponse<String> getResponse() {
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest httpRequest = null;
+        HttpRequest httpRequest;
         HttpResponse<String> httpResponse;
         try {
             httpRequest = HttpRequest.newBuilder(URI.create(BASEURL)).build();
@@ -59,7 +59,7 @@ public class ConnectionManager {
     }
     public static String getResponse(String extension) {
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest httpRequest = null;
+        HttpRequest httpRequest;
         HttpResponse<String> httpResponse;
         try {
             httpRequest = HttpRequest.newBuilder(URI.create(BASEURL + extension)).build();

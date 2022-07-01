@@ -2,8 +2,6 @@ package com.sparta.javabinks.framework;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.sparta.javabinks.dtos.PeopleDTO;
-import com.sparta.javabinks.framework.ConnectionManager;
 import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,14 +18,12 @@ import java.util.stream.Stream;
 
 import static io.restassured.RestAssured.*;
 
-import static org.hamcrest.Matchers.hasLength;
 import static org.hamcrest.Matchers.notNullValue;
 
 
-public class FrameworkTest {
+public class ApiTesting {
     ObjectMapper mapper = new ObjectMapper();
     static String response;
-    static String specificResponse;
 
     @BeforeAll
     static void setupAll(){
